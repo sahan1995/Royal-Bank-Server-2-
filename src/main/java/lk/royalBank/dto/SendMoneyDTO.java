@@ -18,6 +18,14 @@ public class SendMoneyDTO {
         this.depositAccount = depositAccount;
     }
 
+    public SendMoneyDTO(int sendMoneyID, String dateAndTime, double amount, String depositAccount, BankAccountDTO bankAccountDTO) {
+        this.sendMoneyID = sendMoneyID;
+        this.dateAndTime = dateAndTime;
+        this.amount = amount;
+        this.depositAccount = depositAccount;
+        this.bankAccountDTO = bankAccountDTO;
+    }
+
     public SendMoneyDTO() {
     }
 

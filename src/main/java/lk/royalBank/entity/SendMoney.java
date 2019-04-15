@@ -28,6 +28,14 @@ public class SendMoney {
         this.setDepositAccount(depositAccount);
     }
 
+
+    public SendMoney(String dateAndTime, double amount, String depositAccount, BankAccount bankAccount) {
+        this.dateAndTime = dateAndTime;
+        this.amount = amount;
+        this.depositAccount = depositAccount;
+        this.bankAccount = bankAccount;
+    }
+
     public SendMoney() {
     }
 

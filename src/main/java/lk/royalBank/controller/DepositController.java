@@ -1,5 +1,6 @@
 package lk.royalBank.controller;
 
+import lk.royalBank.entity.ATMcard;
 import lk.royalBank.service.DepositService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +18,8 @@ public class DepositController {
     @Autowired
     DepositService depositService;
     @GetMapping
-    void Test() throws IOException {
-        depositService.depositMoney(null);
+    ATMcard Test() throws IOException {
+//        depositService.depositMoney(null);
+        return new ATMcard();
     }
 }

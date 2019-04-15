@@ -1,23 +1,18 @@
 package lk.royalBank.service.impl;
 
 import lk.royalBank.dto.DepositDTO;
+import lk.royalBank.entity.BankAccount;
 import lk.royalBank.entity.Deposit;
 import lk.royalBank.repository.DepositRepository;
 import lk.royalBank.service.DepositService;
-import org.json.JSONObject;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -33,22 +28,34 @@ public class DepositServiceImpl implements DepositService {
     @Override
     public void depositMoney(DepositDTO depositDTO) throws MalformedURLException, IOException {
 
+
+        Deposit deposit = new Deposit();
+        BankAccount bankAccount = new BankAccount();
+
+        BeanUtils.copyProperties(depositDTO,deposit);
+        BeanUtils.copyProperties(depositDTO.getBankAccountDTO(),bankAccount);
+        depositRepository.save(deposit);
+
+
+
+
+
+
 //        URL url = new URL(urlForserver1+depositDTO.getBankAccountDTO().getAccountNumber());
-        URL url = new URL(urlForserver1);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-            while ((inputLine=in.readLine())!=null){
-                response.append(inputLine);
-            }
-            in.close();
-
-
+//        URL url = new URL(urlForserver1);
+//        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+//        con.setRequestMethod("GET");
+//        con.setRequestProperty("User-Agent", USER_AGENT);
+//        int responseCode = con.getResponseCode();
+//        if (responseCode == HttpURLConnection.HTTP_OK) {
+//            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//            while ((inputLine=in.readLine())!=null){
+//                response.append(inputLine);
+//            }
+//            in.close();
+//            String s = response.toString();
 
 
 
@@ -79,4 +86,4 @@ public class DepositServiceImpl implements DepositService {
         }
 
     }
-}
+

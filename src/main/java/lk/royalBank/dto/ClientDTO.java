@@ -19,6 +19,9 @@ public class ClientDTO {
     private String occupation;
     private boolean isBlocked;
 
+    private String userName;
+
+    private String password;
 
     private BranchDTO branchDTO;
 
@@ -27,7 +30,7 @@ public class ClientDTO {
     private List<BankAccountDTO> bankAccountDTOS;
 
 
-    public ClientDTO(String clientID, String fname, String mname, String lname, String gender, String dob, String nic, String country, String city, String address, String tel, String email, String occupation, boolean isBlocked) {
+    public ClientDTO(String clientID, String fname, String mname, String lname, String gender, String dob, String nic, String country, String city, String address, String tel, String email, String occupation, boolean isBlocked, String userName, String password) {
         this.clientID = clientID;
         this.fname = fname;
         this.mname = mname;
@@ -42,6 +45,28 @@ public class ClientDTO {
         this.email = email;
         this.occupation = occupation;
         this.isBlocked = isBlocked;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public ClientDTO(String clientID, String fname, String mname, String lname, String gender, String dob, String nic, String country, String city, String address, String tel, String email, String occupation, boolean isBlocked, String userName, String password, BranchDTO branchDTO) {
+        this.clientID = clientID;
+        this.fname = fname;
+        this.mname = mname;
+        this.lname = lname;
+        this.gender = gender;
+        this.dob = dob;
+        this.nic = nic;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+        this.tel = tel;
+        this.email = email;
+        this.occupation = occupation;
+        this.isBlocked = isBlocked;
+        this.userName = userName;
+        this.password = password;
+        this.branchDTO = branchDTO;
     }
 
     public ClientDTO() {
@@ -181,6 +206,22 @@ public class ClientDTO {
 
     public void setBankAccountDTOS(List<BankAccountDTO> bankAccountDTOS) {
         this.bankAccountDTOS = bankAccountDTOS;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
