@@ -21,6 +21,7 @@ public class WidthdrawDTO {
         this.widthdrawerName = widthdrawerName;
     }
 
+
     public WidthdrawDTO() {
     }
 

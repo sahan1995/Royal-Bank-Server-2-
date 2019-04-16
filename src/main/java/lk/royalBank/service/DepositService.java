@@ -7,6 +7,6 @@ import java.net.MalformedURLException;
 
 public interface DepositService {
 
-    void depositMoney(DepositDTO depositDTO) throws MalformedURLException,IOException;
+    void depositMoney(DepositDTO depositDTO);
 
 }

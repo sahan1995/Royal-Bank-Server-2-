@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -21,12 +22,9 @@ public class DepositServiceImpl implements DepositService {
     @Autowired
     DepositRepository depositRepository;
 
-//    String urlForserver1 = "http://192.168.1.104:8080/api/v1/checkBalance?accountNumber=";
-    String urlForserver1 = "https://my-json-server.typicode.com/typicode/demo/db";
-    private static final String USER_AGENT = "Mozilla/5.0";
 
     @Override
-    public void depositMoney(DepositDTO depositDTO) throws MalformedURLException, IOException {
+    public void depositMoney(DepositDTO depositDTO) {
 
 
         Deposit deposit = new Deposit();
@@ -34,9 +32,15 @@ public class DepositServiceImpl implements DepositService {
 
         BeanUtils.copyProperties(depositDTO,deposit);
         BeanUtils.copyProperties(depositDTO.getBankAccountDTO(),bankAccount);
+        deposit.setBankAccount(bankAccount);
         depositRepository.save(deposit);
 
-
+        RestTemplate restTemplate = new RestTemplate();
+        try{
+            restTemplate.put("http://192.168.1.101:8080/api/v1/account/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
+        }catch (Exception e){
+            restTemplate.put("http://192.168.1.101:8083/api/v1/account/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
+        }
 
 
 

@@ -1,12 +1,10 @@
 package lk.royalBank.controller;
 
+import lk.royalBank.dto.DepositDTO;
 import lk.royalBank.entity.ATMcard;
 import lk.royalBank.service.DepositService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -18,8 +16,14 @@ public class DepositController {
     @Autowired
     DepositService depositService;
     @GetMapping
-    ATMcard Test() throws IOException {
+   public DepositDTO DepositDTO() throws IOException {
 //        depositService.depositMoney(null);
-        return new ATMcard();
+        return new DepositDTO();
+    }
+
+    @PostMapping
+    public void depositMoney(@RequestBody DepositDTO depositDTO){
+        depositService.depositMoney(depositDTO);
+        System.out.println(depositDTO);
     }
 }

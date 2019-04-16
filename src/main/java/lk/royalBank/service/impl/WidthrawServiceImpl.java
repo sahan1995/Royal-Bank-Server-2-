@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @Transactional
@@ -25,6 +26,15 @@ public class WidthrawServiceImpl implements WidthrawService {
         widthdraw.setBankAccount(bankAccount);
 
         widthdrawRepository.save(widthdraw);
+
+        RestTemplate restTemplate = new RestTemplate();
+        try{
+            restTemplate.put("http://192.168.1.101:8080/api/v1/account/doTransaction/?type=withdraw&accno="+widthdrawDTO.getBankAccountDTO().getAccountNumber()+"&amount="+widthdrawDTO.getAmount(),null);
+        }catch (Exception e){
+            restTemplate.put("http://192.168.1.101:8083/api/v1/account/doTransaction/?type=withdraw&accno="+widthdrawDTO.getBankAccountDTO().getAccountNumber()+"&amount="+widthdrawDTO.getAmount(),null);
+        }
+
+
 
 //        To be Implement
     }
