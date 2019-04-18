@@ -1,9 +1,11 @@
 package lk.royalBank.service.impl;
 
+import lk.royalBank.dto.ClientDTO;
 import lk.royalBank.dto.EmployeeDTO;
 import lk.royalBank.dto.UserDTO;
 import lk.royalBank.entity.User;
 import lk.royalBank.repository.UserRepository;
+import lk.royalBank.service.ClientService;
 import lk.royalBank.service.EmployeeService;
 import lk.royalBank.service.UserService;
 import lk.royalBank.util.LoginDTO;
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EmployeeService employeeService;
 
+
+    @Autowired
+    private ClientService clientService;
     @Override
     public void addUser(String UserName, UserDTO userDTO) {
         if (!UserName.equals(userDTO.getUserName())) {
@@ -50,12 +55,10 @@ public class UserServiceImpl implements UserService {
             User user = login.get();
 
             if(user.getUserName().equals(loginDTO.getUserName()) && user.getPassword().equals(loginDTO.getPassword())){
-                if (user.getRole().equals("client")) {
+                if (user.getRole().equals("Client")) {
 
-                    return null;
-//                    EmployeeDTO emp = employeeService.findById(user.getID());
-//
-//                    return new LoginUserDTO(emp.getEmpID(), emp.getFname(), emp.getLname(),emp.getRole());
+                    ClientDTO clientDTO = clientService.findByID(user.getID());
+                    return  new LoginUserDTO(clientDTO.getClientID(),clientDTO.getFname(),clientDTO.getLname(),"Client");
 
                 }else{
 
