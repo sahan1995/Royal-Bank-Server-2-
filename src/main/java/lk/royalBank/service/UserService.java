@@ -9,4 +9,8 @@ public interface UserService {
     void addUser(String UserName,UserDTO userDTO);
 
     LoginUserDTO login(LoginDTO loginDTO);
+
+    UserDTO findByID(String userID);
+
+    void changePassword(String uname,String password);
 }

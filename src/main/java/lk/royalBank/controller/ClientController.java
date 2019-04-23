@@ -18,6 +18,7 @@ public class ClientController {
 
     @GetMapping(value = "/{ID}")
     public ClientDTO findByID(@PathVariable("ID") String clientID){
+        System.out.println(clientID);
         return  clientService.findByID(clientID);
     }
 }

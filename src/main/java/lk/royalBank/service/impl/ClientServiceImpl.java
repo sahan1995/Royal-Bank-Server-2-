@@ -2,10 +2,7 @@ package lk.royalBank.service.impl;
 
 import lk.royalBank.dto.BankAccountDTO;
 import lk.royalBank.dto.ClientDTO;
-import lk.royalBank.entity.BankAccount;
-import lk.royalBank.entity.Branch;
-import lk.royalBank.entity.Client;
-import lk.royalBank.entity.Employee;
+import lk.royalBank.entity.*;
 import lk.royalBank.repository.ClientRepository;
 import lk.royalBank.service.ClientService;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +44,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO findByID(String clientID) {
         if(clientRepository.findById(clientID).isPresent()){
+
             Client client = clientRepository.findById(clientID).get();
             ClientDTO clientDTO = new ClientDTO();
             List<BankAccount> bankAccounts = client.getBankAccounts();
@@ -54,6 +52,16 @@ public class ClientServiceImpl implements ClientService {
 
             bankAccounts.forEach(acc->{
                 BankAccountDTO bankAccountDTO = new BankAccountDTO();
+                List<Deposit> deposits = acc.getDeposits();
+                List<Withdraw> withdraws = acc.getWithdraws();
+                List<SendMoney> sendMonies = acc.getSendMonies();
+
+                deposits.forEach(deposit -> {
+
+
+
+                });
+
                 BeanUtils.copyProperties(acc,bankAccountDTO);
                 accountDTOS.add(bankAccountDTO);
             });

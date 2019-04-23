@@ -81,4 +81,19 @@ public class UserServiceImpl implements UserService {
 
 
     }
+
+    @Override
+    public UserDTO findByID(String userID) {
+        User user = userRepository.findById(userID).get();
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user,userDTO);
+        return userDTO;
+    }
+
+    @Override
+    public void changePassword(String uname, String password) {
+
+        User user = userRepository.findById(uname).get();
+        user.setPassword(password);
+    }
 }
