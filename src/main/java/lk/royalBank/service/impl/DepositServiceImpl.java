@@ -37,9 +37,9 @@ public class DepositServiceImpl implements DepositService {
 
         RestTemplate restTemplate = new RestTemplate();
         try{
-            restTemplate.put("http://192.168.1.101:8080/api/v1/account/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
+            restTemplate.put("http://192.168.1.101:8081/api/v1/accounts/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
         }catch (Exception e){
-            restTemplate.put("http://192.168.1.101:8083/api/v1/account/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
+            restTemplate.put("http://192.168.1.101:8083/api/v1/accounts/doTransaction/?type=deposit&accno="+depositDTO.getBankAccountDTO().getAccountNumber()+"&amount="+depositDTO.getAmount(),null);
         }
 
 

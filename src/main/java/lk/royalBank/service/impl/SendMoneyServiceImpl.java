@@ -52,7 +52,7 @@ public class SendMoneyServiceImpl implements SendMoneyService {
         RestTemplate restTemplate = new RestTemplate();
         try {
 
-            BankAccountDTO bankAccountDTO = restTemplate.getForEntity("http://192.168.1.101:8080/api/v1/account/" + sendMoneyDTO.getDepositAccount(), BankAccountDTO.class).getBody();
+            BankAccountDTO bankAccountDTO = restTemplate.getForEntity("http://192.168.1.101:8081/api/v1/accounts/" + sendMoneyDTO.getDepositAccount(), BankAccountDTO.class).getBody();
             DepositDTO depositDTO = new DepositDTO(dateandtime, sendMoneyDTO.getAmount(), name, "Send Transaction Deposit");
             depositDTO.setBankAccountDTO(bankAccountDTO);
             depositService.depositMoney(depositDTO);
@@ -60,7 +60,7 @@ public class SendMoneyServiceImpl implements SendMoneyService {
 
         }catch (Exception e){
 
-            BankAccountDTO bankAccountDTO = restTemplate.getForEntity("http://192.168.1.101:8083/api/v1/account/" + sendMoneyDTO.getDepositAccount(), BankAccountDTO.class).getBody();
+            BankAccountDTO bankAccountDTO = restTemplate.getForEntity("http://192.168.1.101:8083/api/v1/accounts/" + sendMoneyDTO.getDepositAccount(), BankAccountDTO.class).getBody();
             DepositDTO depositDTO = new DepositDTO(dateandtime, sendMoneyDTO.getAmount(), name, "Send Transaction Deposit");
             depositDTO.setBankAccountDTO(bankAccountDTO);
             depositService.depositMoney(depositDTO);

@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
     private ClientService clientService;
     @Override
     public void addUser(String UserName, UserDTO userDTO) {
+        System.out.println(userDTO);
         if (!UserName.equals(userDTO.getUserName())) {
             throw new RuntimeException("ID's Are Not Same");
         }

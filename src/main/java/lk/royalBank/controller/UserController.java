@@ -5,6 +5,7 @@ import lk.royalBank.service.UserService;
 import lk.royalBank.util.LoginDTO;
 import lk.royalBank.util.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -18,6 +19,7 @@ public class UserController {
     @PostMapping(value = "/{username}")
     public void addUser(@PathVariable("username") String userName, @RequestBody UserDTO userDTO){
 
+//        System.out.println("Users");
         System.out.println(userName);
         System.out.println(userDTO);
         userService.addUser(userName,userDTO);

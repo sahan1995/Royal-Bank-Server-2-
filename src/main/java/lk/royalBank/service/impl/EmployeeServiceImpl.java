@@ -40,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         RestTemplate restTemplate = new RestTemplate();
         //Using server one service for get branchDTO bt ID
         try{
-            ResponseEntity<BranchDTO> responseEntity = restTemplate.getForEntity("http://192.168.1.101:8080/api/v1/branches/" + employeeDTO.getBrachid(), BranchDTO.class);
+            ResponseEntity<BranchDTO> responseEntity = restTemplate.getForEntity("http://192.168.1.101:8081/api/v1/branches/" + employeeDTO.getBrachid(), BranchDTO.class);
             HttpStatus statusCode = responseEntity.getStatusCode();
             System.out.println(statusCode);
             BranchDTO branchDTO = responseEntity.getBody();

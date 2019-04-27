@@ -30,6 +30,6 @@ public class CreateAccountServiceImpl implements CreateAccountService {
         UserDTO userDTO = new UserDTO(clientDTO.getUserName(),clientDTO.getPassword(),"Client",clientDTO.getClientID());
         userService.addUser(clientDTO.getUserName(),userDTO);
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForEntity("http://192.168.1.101:8083/api/v1/account/"+createAccountDTO.getBankAccountDTO().getAccountNumber(),createAccountDTO.getBankAccountDTO(),null);
+        restTemplate.postForEntity("http://192.168.1.101:8083/api/v1/accounts/"+createAccountDTO.getBankAccountDTO().getAccountNumber(),createAccountDTO.getBankAccountDTO(),null);
     }
 }
